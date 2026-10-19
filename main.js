@@ -3,10 +3,42 @@ var rotateIcons = document.getElementById('rot-icons');
 var clickRotateDiv = document.getElementById('click-rot');
 var angle = 0;
 
+var sparkleLayer = document.createElement('div');
+sparkleLayer.className = 'sparkle-layer';
+document.body.appendChild(sparkleLayer);
+
+function burstSparkles() {
+  for (var i = 0; i < 20; i += 1) {
+    var sparkle = document.createElement('span');
+    sparkle.className = 'sparkle';
+
+    var angleValue = (Math.PI * 2 * i) / 20 + Math.random() * 0.7;
+    var distance = 55 + Math.random() * 95;
+    var dx = Math.cos(angleValue) * distance;
+    var dy = Math.sin(angleValue) * distance;
+
+    sparkle.style.setProperty('--dx', dx + 'px');
+    sparkle.style.setProperty('--dy', dy + 'px');
+    sparkle.style.setProperty('--size', (4 + Math.random() * 9) + 'px');
+    sparkle.style.left = '50%';
+    sparkle.style.top = '50%';
+    sparkle.style.animationDelay = (Math.random() * 0.2) + 's';
+
+    sparkleLayer.appendChild(sparkle);
+    setTimeout(function(sparkleNode) {
+      sparkleNode.remove();
+    }, 900, sparkle);
+  }
+}
+
 clickRotateDiv.onclick = function() {
   angle += 60;
   rotateDiv.style.transform = 'rotate(' + angle + 'deg)';
   rotateIcons.style.transform = 'rotate(' + angle + 'deg)';
+  burstSparkles();
+  clickRotateDiv.classList.remove('pulse');
+  void clickRotateDiv.offsetWidth;
+  clickRotateDiv.classList.add('pulse');
 };
 
 var step = 2;
@@ -93,38 +125,60 @@ window.onload = function() {
   const sixths = Array.from(document.querySelectorAll('.sixths'));
   let index = 0;
   let temp = document.querySelector('.temp');
+  document.body.classList.add('power-on');
 
   document.querySelector('#rot-icons').addEventListener('click', () => {
     sixths[index].classList.remove('active');
     index = (index + 1) % sixths.length;
     sixths[index].classList.add('active');
+    burstSparkles();
     if (index == 0 ) {
       changeTemp(temp, 34);
       console.log("sun")
       document.querySelector('#mountains').classList.remove("snow");
       document.querySelector('#mountains').classList.remove("clouds");
+      document.querySelector('#mountains').classList.remove("sunset");
+      document.querySelector('#mountains').classList.remove("moon");
+      document.querySelector('#mountains').classList.remove("storm");
     } else if (index == 1) {
       changeTemp(temp, 27);
       console.log("sunset")
       document.querySelector('#mountains').classList.add("sunset");
+      document.querySelector('#mountains').classList.remove("moon");
+      document.querySelector('#mountains').classList.remove("storm");
+      document.querySelector('#mountains').classList.remove("snow");
+      document.querySelector('#mountains').classList.remove("clouds");
     } else if (index == 2) {
       changeTemp(temp, 14);
       console.log("moon")
       document.querySelector('#mountains').classList.remove("sunset");
+      document.querySelector('#mountains').classList.remove("storm");
+      document.querySelector('#mountains').classList.remove("clouds");
+      document.querySelector('#mountains').classList.remove("snow");
       document.querySelector('#mountains').classList.add("moon");
     } else if (index == 3) {
       changeTemp(temp, 16);
       console.log("clouds")
+      document.querySelector('#mountains').classList.remove("moon");
+      document.querySelector('#mountains').classList.remove("storm");
+      document.querySelector('#mountains').classList.remove("sunset");
+      document.querySelector('#mountains').classList.remove("snow");
       document.querySelector('#mountains').classList.add("clouds");
     } else if (index == 4) {
       changeTemp(temp, 8);
       console.log("storm")
+      document.querySelector('#mountains').classList.remove("moon");
+      document.querySelector('#mountains').classList.remove("clouds");
+      document.querySelector('#mountains').classList.remove("snow");
+      document.querySelector('#mountains').classList.remove("sunset");
       document.querySelector('#mountains').classList.add("storm");
     } else if (index == 5) {
       changeTemp(temp, -4);
       console.log("snow")
       document.querySelector('#mountains').classList.remove("moon");
       document.querySelector('#mountains').classList.remove("storm");
+      document.querySelector('#mountains').classList.remove("sunset");
+      document.querySelector('#mountains').classList.remove("clouds");
       document.querySelector('#mountains').classList.add("snow");
     }
 
