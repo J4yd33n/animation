@@ -13,8 +13,7 @@ html, body {
 body {
     display: flex;
     justify-content: center;
-    background: rgb(194 206 219);
-    background: linear-gradient(205deg, rgb(238 233 245) 0%, rgb(30 34 42) 100%);
+    background: linear-gradient(135deg, #ffd76d 0%, #ff9ebd 38%, #927ce6 72%, #54d8d0 100%);
     margin: 0;
     font-family:'poppins', sans-serif;
 }
@@ -53,13 +52,19 @@ body {
     height: var(--init-size);
     border-radius: 50%;
     overflow: hidden; 
-    box-shadow: -40px 40px 30px 10px rgb(0, 0, 0, 0.4), 
+    background: linear-gradient(135deg, #fff9e9 0%, #aab7d2 12%, #f7fdff 22%, #6a7695 36%, #f7fdff 49%, #69728c 64%, #dce8f1 78%, #596780 100%);
+    box-shadow:
+        0 0 0 5px #ffcf5d,
+        0 0 0 10px #ff7ea8,
+        0 0 0 14px rgba(255, 255, 255, 0.8),
+        -40px 40px 30px 10px rgb(0, 0, 0, 0.4), 
         -80px 80px 40px 10px rgb(0, 0, 0, 0.6), 
         -120px 120px 80px 10px rgb(0, 0, 0, 0.6); 
 }
 .outer-rim-2 {
     width: calc(var(--init-size) * 0.97);
     height: calc(var(--init-size) * 0.97);
+    background: linear-gradient(145deg, #dffcff 0%, #637a9e 17%, #f6fbff 31%, #475779 52%, #d7e6f4 70%, #5c6b8c 100%);
     box-shadow: 2px -2px 2px 0 rgb(108, 115, 129, 0.8), 
     -30px 30px 12px 10px rgb(0, 0, 0, 0.5),
     inset -2px 2px 2px 0 rgb(108, 115, 129, 0.2), 
@@ -70,6 +75,7 @@ body {
     border-radius: 50%;
     width: calc(var(--init-size) * 0.92);
     height: calc(var(--init-size) * 0.92);
+    background: linear-gradient(135deg, #263852 0%, #91a4c5 18%, #34405b 43%, #a3b1cc 62%, #293650 100%);
     box-shadow: 
     -2px 2px 2px 0 rgba(108, 115, 129, 0.4), 
     2px -2px 1px 0px rgba(0, 0, 0, 0.2), 
@@ -498,15 +504,123 @@ body {
     bottom: unset;
     top: 12.5%;
     box-shadow:
-    26px -26px 42px 20px rgba(0, 0, 0, 0.5),
-    16px -16px 22px 0px rgba(0, 0, 0, 0.4),
-    6px -6px 12px 0px rgba(0, 0, 0, 0.5),
-    inset -3px 3px 2px 1px rgba(0, 0, 0, 0.5),
-    inset 5px -5px 14px 3px rgba(108, 115, 129, 0.5), 
-    inset 10px -10px 12px 5px rgba(0, 0, 0, 0.1);
+    0 0 0 4px #fff8e8,
+    0 0 0 8px #ff78a8,
+    0 0 0 11px #563b7c,
+    16px -16px 24px 4px rgba(0, 0, 0, 0.42),
+    inset 4px 5px 0 rgba(255, 255, 255, 0.7),
+    inset -5px -8px 12px rgba(96, 41, 98, 0.5);
     display: block;
-    background: linear-gradient(25deg, rgb(69 75 85) 0%, rgb(22 25 32) 100%);
+    background: radial-gradient(circle at 33% 24%, #fff1a7 0%, #ffd355 31%, #ff9f5c 56%, #f36f9b 100%);
     cursor: pointer;
+    overflow: visible;
+    isolation: isolate;
+}
+.inner-circle::before,
+.inner-circle::after {
+    content: "";
+    position: absolute;
+    z-index: 10;
+    width: 13%;
+    height: 13%;
+    clip-path: polygon(50% 0%, 62% 36%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0% 50%, 38% 36%);
+    filter: drop-shadow(1px 2px 0 #55375f);
+    pointer-events: none;
+}
+.inner-circle::before {
+    top: 5%;
+    left: 8%;
+    background: #72f0dc;
+    rotate: -12deg;
+}
+.inner-circle::after {
+    top: 8%;
+    right: 7%;
+    background: #fff8e8;
+    rotate: 13deg;
+}
+.mascot-face {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background: none;
+    pointer-events: none;
+    z-index: 8;
+}
+.mascot-eye {
+    position: absolute;
+    top: 23%;
+    width: 27%;
+    height: 34%;
+    border: 2px solid #392943;
+    border-radius: 50%;
+    background: #fffdf5;
+    box-shadow: 0 3px 0 #5d416b, inset 0 -3px 0 rgba(75, 53, 82, 0.12);
+    margin: 0;
+}
+.mascot-eye.left {
+    left: 17%;
+    right: auto;
+    rotate: -7deg;
+}
+.mascot-eye.right {
+    left: auto;
+    right: 17%;
+    rotate: 7deg;
+}
+.mascot-eye::before {
+    content: "";
+    position: absolute;
+    width: 52%;
+    height: 59%;
+    right: 13%;
+    bottom: 7%;
+    border-radius: 50%;
+    background: #30263f;
+    box-shadow: inset 2px 0 0 rgba(255, 255, 255, 0.18);
+}
+.mascot-eye::after {
+    content: "";
+    position: absolute;
+    width: 23%;
+    height: 19%;
+    right: 23%;
+    bottom: 49%;
+    border-radius: 50%;
+    background: #fff;
+}
+.mascot-cheek {
+    position: absolute;
+    top: 61%;
+    width: 16%;
+    height: 9%;
+    border-radius: 50%;
+    background: #ff6f98;
+    filter: drop-shadow(0 1px 0 rgba(93, 48, 92, 0.4));
+    margin: 0;
+}
+.mascot-cheek.left {
+    left: 7%;
+    right: auto;
+}
+.mascot-cheek.right {
+    left: auto;
+    right: 7%;
+}
+.mascot-mouth {
+    position: absolute;
+    width: 29%;
+    height: 13%;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 17%;
+    margin: auto;
+    border-bottom: 4px solid #392943;
+    border-radius: 0 0 50% 50%;
+    background: none;
 }
 .sixths-container {
     background: none;
